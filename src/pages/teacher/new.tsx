@@ -1,5 +1,8 @@
 import NavigationTeacher from '@/components/navigationTeacher'
-import { Inter, Roboto } from 'next/font/google'
+import { Roboto } from 'next/font/google'
+import { useState } from 'react'
+import { collection, addDoc, updateDoc } from "firebase/firestore";
+import { db } from '../_app';
 
 const roboto = Roboto({
     subsets: ['latin'],
@@ -7,22 +10,59 @@ const roboto = Roboto({
 })
 
 export default function New() {
+
+    const [lessonName, setLessonName] = useState('');
+    const [selectedGrade, setSelectedGrade] = useState('A+');
+    const [selectedDifficulty, setSelectedDifficulty] = useState('Tough');
+    const [selectedTypeOfQuestion, setSelectedTypeOfQuestion] = useState('MCQs');
+
+    const handleLessonNameChange = (event: any) => {
+        setLessonName(event.target.value);
+    }
+
+    const handleGradeChange = (event: any) => {
+        setSelectedGrade(event.target.value);
+    }
+
+    const handleDifficultyChange = (event: any) => {
+        setSelectedDifficulty(event.target.value);
+    }
+
+    const handleTypeOfQuestion = (event: any) => {
+        setSelectedTypeOfQuestion(event.target.value);
+    }
+
+    const addtoDB = async () => {
+        const docRef = await addDoc(collection(db, "lessons"), {
+                        lessonName: lessonName,
+                        grade: selectedGrade,
+                        difficulty: selectedDifficulty,
+                        typeOfQuestion: selectedTypeOfQuestion,
+        })
+        await updateDoc(docRef, {
+          id: docRef.id,
+        })
+      }
+
     return (
         <div className='m-4'>
-            <NavigationTeacher/>
+            <NavigationTeacher />
             <div className='py-4 flex flex-row justify-between'>
                 <h1 className='text-3xl'>Create New Lesson</h1>
             </div>
             <div className='mx-10'>
                 <div className='py-2 flex flex-row gap-2 place-items-center'>
                     <h1 className='text-xl'>Lesson Name : </h1>
-                    <input type='text' className='p-1 border-2 ' />
+                    <input type='text' value={lessonName} onChange={handleLessonNameChange} className='p-1 border-2' />
                 </div>
                 <div className='py-2 flex flex-row gap-2 place-items-center'>
                     <h1 className='text-xl'>Grade : </h1>
                     <div className="sm:col-span-3">
                         <div className="mt-2">
-                            <select id="country" name="country" autoComplete="country-name" className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <select
+                                value={selectedGrade}
+                                onChange={handleGradeChange}
+                                className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 <option>A+</option>
                                 <option>B+</option>
                                 <option>C+</option>
@@ -34,7 +74,10 @@ export default function New() {
                     <h1 className='text-xl'>Difficulty : </h1>
                     <div className="sm:col-span-3">
                         <div className="mt-2">
-                            <select id="country" name="country" autoComplete="country-name" className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <select
+                                value={selectedDifficulty}
+                                onChange={handleDifficultyChange}
+                                className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 <option>Tough</option>
                                 <option>Hard</option>
                                 <option>Medium</option>
@@ -47,7 +90,10 @@ export default function New() {
                     <h1 className='text-xl'>Types of Questions : </h1>
                     <div className="sm:col-span-3">
                         <div className="mt-2">
-                            <select id="country" name="country" autoComplete="country-name" className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <select
+                                value={selectedTypeOfQuestion}
+                                onChange={handleTypeOfQuestion}
+                                className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 <option>MCQs</option>
                                 <option>Short Answer</option>
                                 <option>Long Answer</option>
@@ -73,7 +119,7 @@ export default function New() {
                     </div>
                 </div>
                 <div className='flex py-2 justify-end'>
-                    <button className='p-2 px-6 border bg-yellow-400 hover:bg-yellow-500'>Create Lesson</button>
+                    <button onClick={addtoDB} className='p-2 px-6 border bg-yellow-400 hover:bg-yellow-500'>Create Lesson</button>
                 </div>
             </div>
         </div>
