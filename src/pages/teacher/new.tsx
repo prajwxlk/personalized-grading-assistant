@@ -1,3 +1,4 @@
+import NavigationTeacher from '@/components/navigationTeacher'
 import { Inter, Roboto } from 'next/font/google'
 
 const roboto = Roboto({
@@ -8,9 +9,7 @@ const roboto = Roboto({
 export default function New() {
     return (
         <div className='m-4'>
-            <div className='py-2 flex flex-row justify-between border-b-2'>
-                <h1 className='text-4xl'>Personalized Grading Assistant - <span className='italic'>Teacher</span></h1>
-            </div>
+            <NavigationTeacher/>
             <div className='py-4 flex flex-row justify-between'>
                 <h1 className='text-3xl'>Create New Lesson</h1>
             </div>

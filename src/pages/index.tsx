@@ -4,20 +4,19 @@ export default function Home() {
   return (
     <div className='m-4'>
       <div className='py-2 flex flex-row justify-between border-b-2'>
-        <h1 className='text-4xl'>Personalized Grading Assistant - <span className='italic'>Teacher</span></h1>
+        <h1 className='text-4xl'>Personalized Grading Assistant</h1>
       </div>
-      <div>
-        <div className='py-4 flex flex-row justify-between'>
-          <h1 className='text-3xl'>Lessons Archive</h1>
-          <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
-            <Link href='/new'>
-              Create New Lesson
-            </Link>
+      <div className='flex flex-col gap-3 p-4'>
+        <Link href='/teacher'>
+          <button className='p-3 w-full bg-yellow-400 hover:bg-yellow-500'>
+            Teacher's Dashboard
           </button>
-        </div>
-        <div>
-          List of the generated lessons so far here....
-        </div>
+        </Link>
+        <Link href='/student'>
+          <button className='p-3 w-full bg-yellow-400 hover:bg-yellow-500'>
+            Student's Dashboard
+          </button>
+        </Link>
       </div>
     </div>
   )
