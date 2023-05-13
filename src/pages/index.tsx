@@ -9,12 +9,12 @@ export default function Home() {
       <div className='flex flex-col gap-3 p-4'>
         <Link href='/teacher'>
           <button className='p-3 w-full bg-yellow-400 hover:bg-yellow-500'>
-            Teacher's Dashboard
+            Teacher&apos;s Dashboard
           </button>
         </Link>
         <Link href='/student'>
           <button className='p-3 w-full bg-yellow-400 hover:bg-yellow-500'>
-            Student's Dashboard
+            Student&apos;s Dashboard
           </button>
         </Link>
       </div>

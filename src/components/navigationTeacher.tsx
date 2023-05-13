@@ -8,10 +8,10 @@ export default function NavigationTeacher() {
       </Link>
       <div className='flex flex-row gap-2'>
         <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
-          <a href='/teacher/new'>Create New Lesson</a>
+          <Link href='/teacher/new'>Create New Lesson</Link>
         </button>
         <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
-          <a href='/teacher'>Lesson Archive</a>
+          <Link href='/teacher'>Lesson Archive</Link>
         </button>
       </div>
     </div>
