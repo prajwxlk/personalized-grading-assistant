@@ -7,12 +7,16 @@ export default function NavigationTeacher() {
         <h1 className='text-4xl'>Personalized Grading Assistant - <span className='italic'>Teacher</span></h1>
       </Link>
       <div className='flex flex-row gap-2'>
-        <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
-          <Link href='/teacher/new'>Create New Lesson</Link>
-        </button>
-        <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
-          <Link href='/teacher'>Lesson Archive</Link>
-        </button>
+        <Link href="/teacher/new">
+          <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
+            Create New Lesson
+          </button>
+        </Link>
+        <Link href="/teacher">
+          <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
+            Lesson Archive
+          </button>
+        </Link>
       </div>
     </div>
   )

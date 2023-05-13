@@ -6,6 +6,13 @@ export default function NavigationStudent() {
       <Link href="/">
         <h1 className='text-4xl'>Personalized Grading Assistant - <span className='italic'>Student</span></h1>
       </Link>
+      <div>
+        <Link href="/student/evaluation">
+          <button className='p-3 bg-yellow-400 hover:bg-yellow-500'>
+            Evaluation
+          </button>
+        </Link>
+      </div>
     </div>
   )
 }
