@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import "cal-sans"
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { Toaster } from 'react-hot-toast';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -19,7 +20,10 @@ const db = getFirestore(app);
 
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return <div>
+    <Toaster/>
+    <Component {...pageProps} />
+  </div>
 }
 
 export { db }

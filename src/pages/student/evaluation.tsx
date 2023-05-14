@@ -5,6 +5,7 @@ import { FirebaseAppProvider, FirestoreProvider, useFirestoreDocData, useFiresto
 import { db } from '../_app';
 import { useState } from 'react';
 import YouTube from "react-youtube";
+import { toast } from 'react-hot-toast';
 
 const inter = Inter({
     subsets: ['latin']
@@ -30,6 +31,7 @@ export default function evaluation() {
             setSelectedFile(file);
           }        
         console.log("selectedFile : ", selectedFile);
+        toast.success("Image File uploaded successfully");
     }
 
     async function getLessons() {

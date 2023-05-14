@@ -3,6 +3,7 @@ import { Roboto } from 'next/font/google'
 import { useState } from 'react'
 import { collection, addDoc, updateDoc } from "firebase/firestore";
 import { db } from '../_app';
+import toast from 'react-hot-toast';
 
 const roboto = Roboto({
     subsets: ['latin'],
@@ -43,6 +44,7 @@ export default function New() {
         const file = event.target.files?.[0];
         setSelectedFile(file || null);
         console.log(selectedFile);
+        toast.success("PDF File Uploaded Successfully");
     }
 
     /*
@@ -83,6 +85,7 @@ export default function New() {
         //Make OpenAI API fetch request
 
         try {
+            toast.success("Generating Question...");
             const response = await fetch('/api/openaiTeacher', {
                 method: 'POST',
                 headers: {
@@ -224,7 +227,7 @@ export default function New() {
                     </div>
                 </div>
                 <div className='flex py-2 justify-center'>
-                    <button onClick={createLesson} className='p-2 px-6 border bg-yellow-400 hover:bg-yellow-500'>Create Lesson</button>
+                    <button onClick={createLesson} className='p-2 px-6 border bg-yellow-400 hover:bg-yellow-500'>Create Question</button>
                 </div>
             </div>
             <div className='mx-10'>
